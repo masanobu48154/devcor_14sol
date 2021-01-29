@@ -1,0 +1,25 @@
+---
+- name: Install NTP
+  package:
+    name: ntp
+    state: present
+
+- name: Start NTP service
+  service:
+    name: ntp
+    state: started
+
+- name: Create NTP confioguration from the template
+  template:
+    src: ntp.conf.tmpl
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: 644
+
+- name: Restart NTP service
+  service:
+    name: ntp
+    state: restarted
+
+  
